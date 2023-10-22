@@ -3,25 +3,38 @@
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
+			<!-- <u-button>查询所有</u-button> -->
+			<u-list>
+				<u-list-item v-for="(item,index) in data" :key="index">
+					<u-cell :title="item.name"></u-cell>
+				</u-list-item>
+			</u-list>
 		</view>
 	</view>
 </template>
 
 <script setup>
-	import { onLoad } from '@dcloudio/uni-app'
-	import { computed, ref } from 'vue'
-	import {getAllUser} from '../service/user.js'
+	import {
+		onLoad
+	} from '@dcloudio/uni-app'
+	import {
+		computed,
+		ref
+	} from 'vue'
+	import {
+		getAllUser
+	} from '../service/user.js'
 
-		const title=ref("Hello")
-		const getAll=async ()=>{
-			const res =await getAllUser()
-			console.log(res)
-		}
-		onLoad(()=>{
-				getAll()
-		}) 
-	
-	
+	const title = ref("Hello")
+	let data = ref([])
+	const getAll = async () => {
+		const res = await getAllUser()
+		data.value = res
+		console.log(data.value)
+	}
+	onLoad(() => {
+		getAll()
+	})
 </script>
 
 <style>
