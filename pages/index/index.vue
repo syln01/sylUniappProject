@@ -1,12 +1,12 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<!-- <image class="logo" src="/static/logo.png"></image> -->
+		<u-button @click="getAll" type="primary" :plain="true" size="small" class="button">查询所有</u-button>
 		<view class="text-area">
-			<text class="title">{{title}}</text>
 			<!-- <u-button>查询所有</u-button> -->
 			<u-list>
 				<u-list-item v-for="(item,index) in data" :key="index">
-					<u-cell :title="item.name"></u-cell>
+					<u-cell :title="`姓名:${item.name}  工资:${item.salary}`"></u-cell>
 				</u-list-item>
 			</u-list>
 		</view>
@@ -33,7 +33,7 @@
 		console.log(data.value)
 	}
 	onLoad(() => {
-		getAll()
+		// getAll()
 	})
 </script>
 
@@ -43,6 +43,9 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		.button{
+			width:150rpx;
+		}
 	}
 
 	.logo {
